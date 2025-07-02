@@ -1,3 +1,4 @@
+import 'package:clisence/screens/auth/sign_in_screen.dart';
 import 'package:clisence/screens/auth/sign_up_screen.dart';
 import 'package:clisence/screens/onboarding_screen.dart';
 import 'package:clisence/screens/splash_screen.dart';
@@ -11,6 +12,7 @@ class AppRoutes {
   static const String onboarding = '/onboarding';
   static const String signup = '/signup';
   static const String signin = '/signin';
+  static const String formdetails = '/formdetails';
   static const String onboardingWelcome = '/onboarding/welcome';
   static const String onboardingPermissions = '/onboarding/permissions';
   static const String onboardingEmpowerment = '/onboarding/empowerment';
@@ -30,6 +32,15 @@ class AppRoutes {
         path: signup,
         builder: (context, state) => const SignupScreen(),
       ),
+      GoRoute(
+        path: signin,
+        builder: (context, state) => const SignInScreen(),
+      ),
+      GoRoute(
+        path: formdetails,
+        builder: (context, state) => const FormDetailsScreen(),
+      ),
+
     ],
     // Optional: Handle redirects (e.g., for authentication)
     redirect: (context, state) {

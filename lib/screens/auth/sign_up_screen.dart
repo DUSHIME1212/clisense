@@ -246,7 +246,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     const SizedBox(height: 20),
                     TextButton(
                       onPressed: () {
-                        context.go('/signin');
+                        context.go(AppRoutes.signin);
                       },
                       child: const Text(
                         'ALREADY HAD AN ACCOUNT SIGNIN?',

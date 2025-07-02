@@ -189,8 +189,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       onPressed: () {
                         print('Log in with Google clicked');
                       },
-                      icon: Image.asset(
-                        'assets/google_icon.png',
+                      icon: Image.network(
+                        'https://i.pinimg.com/736x/59/7f/11/597f11b631d7d94492f1adb95110cc44.jpg',
                         height: 24,
                       ),
                       label: const Text(
