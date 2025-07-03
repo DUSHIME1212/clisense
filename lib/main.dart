@@ -1,5 +1,7 @@
+import 'package:clisence/screens/auth/form_details_screen.dart';
 import 'package:clisence/screens/auth/sign_in_screen.dart';
 import 'package:clisence/screens/auth/sign_up_screen.dart';
+import 'package:clisence/screens/home_screen.dart';
 import 'package:clisence/screens/onboarding_screen.dart';
 import 'package:clisence/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,7 @@ class AppRoutes {
   static const String onboardingWelcome = '/onboarding/welcome';
   static const String onboardingPermissions = '/onboarding/permissions';
   static const String onboardingEmpowerment = '/onboarding/empowerment';
+  static const String home = '/home';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -39,6 +42,10 @@ class AppRoutes {
       GoRoute(
         path: formdetails,
         builder: (context, state) => const FormDetailsScreen(),
+      ),
+      GoRoute(
+        path: home,
+        builder: (context, state) => const HomeScreen(),
       ),
 
     ],

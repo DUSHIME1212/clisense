@@ -203,8 +203,11 @@ class _SignupScreenState extends State<SignupScreen> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          print('Form is valid, proceeding with signup');
-                          context.go(AppRoutes.splash);
+                          try {
+                            context.go(AppRoutes.formdetails);
+                          } catch (e) {
+                            print('Navigation failed: $e');
+                          }
                         }
                       },
                       style: ElevatedButton.styleFrom(
