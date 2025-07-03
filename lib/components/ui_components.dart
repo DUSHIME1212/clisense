@@ -10,13 +10,14 @@ class UIConstants {
 class UIComponents {
   static AppBar appBar(BuildContext context, String title) {
     return AppBar(
+      centerTitle: true,
+      backgroundColor: Colors.green[900],
       title: Text(
         title,
-        style: Theme.of(
-          context,
-        ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
+        style:
+            Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.white),
+
       ),
-      backgroundColor: Theme.of(context).colorScheme.background,
       elevation: 2,
       actions: [
         TextButton(
@@ -101,19 +102,54 @@ class UIComponents {
     String label,
     VoidCallback onPressed,
   ) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.only(bottom: 4),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.green,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+        onPressed: onPressed,
+        child: Text(
+
+          label,
+          style: Theme.of(
+
+            context,
+          ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
+        ),
       ),
-      onPressed: onPressed,
-      child: Text(
-        label,
-        style: Theme.of(
-          context,
-        ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
+    );
+  }
+
+  //secondary
+  static Widget secondaryButton(
+      BuildContext context,
+      String label,
+      VoidCallback onPressed,
+      ) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.only(bottom: 4),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.green[200],
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+        onPressed: onPressed,
+        child: Text(
+
+          label,
+          style: Theme.of(
+
+            context,
+          ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
+        ),
       ),
     );
   }

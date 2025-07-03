@@ -1,7 +1,9 @@
 // home_screen.dart
 import 'package:clisence/components/alert_card.dart';
+import 'package:clisence/main.dart';
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
+import 'package:go_router/go_router.dart';
 
 import '../components/ui_components.dart' show UIComponents;
 import '../components/forecast_card.dart';
@@ -48,64 +50,80 @@ class HomeScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: UIComponents.appBar(context, 'Home Dashboard'),
-      body: Container(
-        color: FThemes.zinc.light.colors.background,
-        margin: const EdgeInsets.only(bottom: 16.0),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              //forecast
-              UIComponents.card(
-                context,
-                "Forecast",
-                SizedBox(
-                  height: 300, // Increased height to accommodate all items
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: forecasts.length,
-                    itemBuilder: (context, index) {
-                      final forecast = forecasts[index];
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: ForecastCard(
-                          title: forecast['title'],
-                          icon: forecast['icon'],
-                          description: forecast['description'],
-                          temperature: forecast['temperature'],
-                          windSpeed: forecast['windSpeed'],
-                          image: forecast['image'],
-                        ),
-                      );
-                    },
+      appBar: UIComponents.appBar(context, 'Clisense'),
+      body: SingleChildScrollView(
+        child: Container(
+          color: FThemes.zinc.light.colors.background,
+          margin: const EdgeInsets.only(bottom: 16.0),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                //forecast
+                TextButton(
+                  onPressed: () {
+                    context.go(AppRoutes.forecast);
+                  },
+                  child: UIComponents.card(
+                    context,
+                    "Forecast",
+                    SizedBox(
+                      height: 300, // Increased height to accommodate all items
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: forecasts.length,
+                        itemBuilder: (context, index) {
+                          final forecast = forecasts[index];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: ForecastCard(
+                              title: forecast['title'],
+                              icon: forecast['icon'],
+                              description: forecast['description'],
+                              temperature: forecast['temperature'],
+                              windSpeed: forecast['windSpeed'],
+                              image: forecast['image'],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              //alerts
-              UIComponents.card(
-                context,
-                "Alerts",
-                SizedBox(
-                  height: 100,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return const Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: AlertCard(
-                          image: 'https://i.pinimg.com/736x/8b/55/59/8b5559aa155c458f774bccfade3c4782.jpg',
-                          title: 'Alert Title',
-                          description: 'Description of the alert',
-                        ),
-                      );
-                    },
-
-                  )
+                //alerts
+                UIComponents.card(
+                  context,
+                  "Alerts",
+                  SizedBox(
+                    height: 100,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        return const Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: AlertCard(
+                            image: 'https://i.pinimg.com/736x/8b/55/59/8b5559aa155c458f774bccfade3c4782.jpg',
+                            title: 'Alert Title',
+                            description: 'Description of the alert',
+                          ),
+                        );
+                      },
+        
+                    )
+                  ),
                 ),
-              ),
-            ],
+                // buttons
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    UIComponents.primaryButton(context, 'Get forecast', () {}),
+                    UIComponents.secondaryButton(context, 'Check alerts', () {}),
+                    UIComponents.secondaryButton(context, 'Crop advice', () {}),
+                    UIComponents.secondaryButton(context, 'Help and support', () {}),
+                  ],
+                )],
+            ),
           ),
         ),
       ),
