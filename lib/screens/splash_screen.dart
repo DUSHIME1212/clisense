@@ -32,13 +32,14 @@ class SplashScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   //button
-                  Container(
-                    width: double.infinity,
-                    child: FButton(
-                      style: FButtonStyle.secondary,
-                      intrinsicWidth: true,
-                      onPress: () => pushOnboarding(context),
-                      child: const Text('Get started'),
+                  FButton(
+                    onPress: () => pushOnboarding(context),
+                    child: const Text('Get started'),
+                    style: FButtonStyle(
+                      backgroundColor: Colors.green[800],
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                   ),
                 ],

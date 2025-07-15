@@ -3,11 +3,22 @@ import 'package:clisence/screens/auth/sign_in_screen.dart';
 import 'package:clisence/screens/auth/sign_up_screen.dart';
 import 'package:clisence/screens/forecast_screen.dart';
 import 'package:clisence/screens/home_screen.dart';
+import 'package:clisence/utils/app_theme.dart'; // Import AppTheme
 import 'package:clisence/screens/onboarding_screen.dart';
 import 'package:clisence/screens/splash_screen.dart';
+import 'package:clisence/providers/auth_provider.dart';
+import 'package:clisence/providers/data_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
+// Initialize Firebase
+Future<void> initializeApp() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+}
 
 // Define a class to manage routes centrally
 class AppRoutes {
@@ -62,8 +73,17 @@ class AppRoutes {
   );
 }
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await initializeApp();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => DataProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -71,12 +91,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Initialize auth provider
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    authProvider.initialize();
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      // Integrate forui theme
-      builder: (context, child) => FTheme(
-        data: FThemes.zinc.light,
-        child: child!,
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        colorScheme: ColorScheme.light(
+          primary: AppTheme.primaryColor,
+          secondary: AppTheme.secondaryColor,
+        ),
+        useMaterial3: true,
       ),
       // Configure go_router
       routerConfig: AppRoutes.router,
