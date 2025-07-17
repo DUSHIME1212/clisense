@@ -8,6 +8,7 @@ import 'package:clisence/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
 import 'package:go_router/go_router.dart';
+import 'package:clisence/screens/profile_screen.dart';
 
 // Define a class to manage routes centrally
 class AppRoutes {
@@ -21,6 +22,7 @@ class AppRoutes {
   static const String onboardingEmpowerment = '/onboarding/empowerment';
   static const String home = '/home';
   static const String forecast = '/forecast';
+  static const String profile = '/profile';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -50,6 +52,10 @@ class AppRoutes {
         builder: (context, state) => const HomeScreen(),
       ),
       GoRoute(path:forecast, builder: (context, state) => const ForecastScreen()),
+      GoRoute(
+        path: profile,
+        builder: (context, state) => const ProfileScreen(),
+      ),
 
     ],
     // Optional: Handle redirects (e.g., for authentication)

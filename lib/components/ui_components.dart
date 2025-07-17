@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../main.dart';
 
 class UIConstants {
   static const double defaultPadding = 16.0;
@@ -27,7 +29,9 @@ class UIComponents {
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            GoRouter.of(context).go(AppRoutes.profile);
+          },
         ),
       ],
     );
